@@ -12,6 +12,15 @@ module Favico
     end
 
     def fetch_favicon(url)
+      favicon_url = fetch_favicon_url(url)
+      response = self.class.get(favicon_url)
+      if response.code == 200
+        return response.body
+      end
+      nil
+    end
+
+    def fetch_favicon_url(url)
       if root_favicon?(url)
         return url + "/favicon.ico"
       end
