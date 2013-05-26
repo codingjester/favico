@@ -14,7 +14,7 @@ module Favico
     def fetch_favicon(url)
       favicon_url = fetch_favicon_url(url)
       response = self.class.get(favicon_url)
-      if response.code == 200
+      if not response.nil? && response.code == 200
         return response.body
       end
       nil
