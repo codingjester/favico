@@ -1,4 +1,4 @@
-require './favico/parser'
+require 'favico/parser'
 
 module Favico
   class Parser
