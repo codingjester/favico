@@ -38,7 +38,14 @@ module Favico
 
     def xpath_parse(body)
       doc = Nokogiri::HTML(body)
-      doc.xpath("//link[contains(@rel, 'icon')]/@href")[0].value
+      icon = "//link[contains(@rel, 'icon')]/@href"
+      shortcut_icon = "//link[contains(@rel, 'Shortcut Icon')]/@href"
+      resource = doc.at_xpath(icon, shortcut_icon)
+      if !resource.nil?
+        resource.value
+      else
+        return nil
+      end
     end
   end
 end
